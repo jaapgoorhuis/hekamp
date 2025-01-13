@@ -3,8 +3,11 @@
 namespace App\Livewire\Auth\Pages;
 
 use App\Models\Page;
+use Illuminate\Support\Str;
 use Livewire\Component;
 use Livewire\WithFileUploads;
+use Intervention\Image\ImageManager;
+use Intervention\Image\Drivers\Imagick\Driver;
 
 class Create extends Component
 {
@@ -41,8 +44,15 @@ class Create extends Component
         $this->validate();
 
         if($this->header_image) {
+
+            $manager = new ImageManager(new Driver());
+
+            $image = $manager->read($this->header_image->getClientOriginalName());
+
+            $encoded = $image->toWebp(60);
+
             $headerimage = $this->header_image->getClientOriginalName();
-            $this->header_image->storeAs('/public/images/frontend/uploads', $headerimage);
+            $this->header_image->storeAs('/public/images/frontend/uploads', $encoded);
         } else {
             $headerimage = '';
         }

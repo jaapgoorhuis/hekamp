@@ -33,12 +33,10 @@ class Edit extends Component
         $this->id = Route::current()->parameter('id');
         $this->pages = Page::get();
         $this->menu_item = MenuItems::where('id', $this->id)->first();
-
         $this->page_id = $this->menu_item->page_id;
         $this->show_footer = $this->menu_item->show_footer;
         $this->title = $this->menu_item->title;
         $this->show_menu = $this->menu_item->show_footer;
-
     }
 
     protected $rules = [

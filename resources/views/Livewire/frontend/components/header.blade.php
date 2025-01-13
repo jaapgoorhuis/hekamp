@@ -4,9 +4,17 @@
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <title>{{$page->title}}</title>
-    <meta name="description" content="meta description">
-    <meta name="keywords" content="meta keywords">
-    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="description" content="Crewa is gevestigd in Kootwijkerbroek in Nederland. Crewa is gespecialiseerd in het ontwikkelen van dashboards, web applicaties en websites.">
+    <meta property="og:locale" content="nl_NL" />
+    <meta property="og:type" content="website" />
+    <meta property="og:title" content="Crewa - Home" />
+    <meta property="og:description" content="Crewa is gevestigd in Kootwijkerbroek in Nederland. Crewa is gespecialiseerd in het ontwikkelen van dashboards, web applicaties en websites." />
+    <meta property="og:url" content="https://crewa.nl/" />
+    <meta property="og:site_name" content="Crewa" />
+    <meta property="article:modified_time" content="2024-03-18T09:42:28+00:00" />
+    <meta property="og:image" content="https://crewa.nl/public/storage/images/frontend/logo-gold-white.png" />
+    <meta name="twitter:card" content="summary_large_image" />
+
 
     @if($page->route == 'projecten')
         <link rel="stylesheet" href="{{asset('/css/projecten.css')}}"/>

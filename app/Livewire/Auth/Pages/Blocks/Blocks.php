@@ -25,7 +25,6 @@ class Blocks extends Component
     }
 
     public function choosePageBlock() {
-
         return $this->redirect('/auth/pages/blocks/'.$this->id.'/block-type', navigate: true);
     }
 
@@ -49,5 +48,10 @@ class Blocks extends Component
             PageBlock::find($item['value'])->update(['order_id' => $item['order']]);
         }
         return view('livewire.auth.pages.blocks.blocks');
+    }
+
+    public function showMessage() {
+        $message = "This is a custom message from Livewire.";
+        return view('livewire.auth.pages.blocks.message', ['message' => $message]);
     }
 }
