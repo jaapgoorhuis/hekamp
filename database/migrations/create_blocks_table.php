@@ -14,6 +14,7 @@ return new class extends Migration
         Schema::create('blocks', function (Blueprint $table) {
             $table->id();
             $table->string('block_name');
+            $table->string('friendly_name')->nullable();
             $table->string('table_name');
             $table->timestamps();
         });

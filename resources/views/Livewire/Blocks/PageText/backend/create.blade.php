@@ -12,7 +12,7 @@
                             <div class="form-group mb-3" wire:ignore>
                                 <label for="value">blok tekst:</label><br/>
                                 <small class="sub-label-admin">Schrijf hier de tekst voor dit blok</small>
-                                <textarea id="value" wire:model.defer="value"></textarea>
+                                <textarea id="value" wire:model="value"></textarea>
                                 @error('value')
                                 <span class="text-danger">{{ $message }}</span>
                                 @enderror

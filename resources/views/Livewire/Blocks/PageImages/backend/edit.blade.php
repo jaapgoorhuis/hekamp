@@ -49,7 +49,7 @@
                                 x-on:livewire-upload-progress="progress = $event.detail.progress">
 
                                 <label for="header_image">Afbeelding:</label>
-                                <input @if($image_url) disabled @endif type="file" class="form-control @error('image_url') is-invalid @enderror" id="image_url" wire:model="image_url">
+                                <input @if($image_url) disabled @endif type="file" class="form-control @error('image_url') is-invalid @enderror" id="image_url" wire:model.live="image_url">
 
                                 <div
                                     class="bg-blue-500 h-[2px]"
@@ -93,7 +93,7 @@
 
                                         <div class="form-group mb-3">
                                             <label for="image_url">Links afbeelding:</label>
-                                            <input @if($this->image_url) disabled @endif type="file" class="form-control @error('image_url') is-invalid @enderror" id="image_url" wire:model="image_url">
+                                            <input @if($this->image_url) disabled @endif type="file" class="form-control @error('image_url') is-invalid @enderror" id="image_url" wire:model.live="image_url">
                                             @error('image_url')
                                             <span class="text-danger">{{ $message }}</span>
                                             @enderror
@@ -133,7 +133,7 @@
 
                                         <div class="form-group mb-3">
                                             <label for="value">Upload afbeelding rechts:</label><br/>
-                                            <input  @if($this->image_url2) disabled @endif class="form-control @error('image_url2') is-invalid @enderror" type="file" wire:model="image_url2">
+                                            <input  @if($this->image_url2) disabled @endif class="form-control @error('image_url2') is-invalid @enderror" type="file" wire:model.live="image_url2">
                                             @error('image_url2')
                                             <span class="text-danger">{{ $message }}</span>
                                             @enderror

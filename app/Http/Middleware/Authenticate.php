@@ -2,6 +2,7 @@
 
 namespace App\Http\Middleware;
 
+use App\Livewire\Frontend\Index\Index;
 use Illuminate\Auth\Middleware\Authenticate as Middleware;
 use Illuminate\Http\Request;
 

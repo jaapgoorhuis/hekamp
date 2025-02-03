@@ -4,11 +4,12 @@ namespace App\Models;
 
 // use Illuminate\Contracts\auth\MustVerifyEmail;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
+use Illuminate\Database\Eloquent\Model;
 use Illuminate\Foundation\Auth\User as Authenticatable;
 use Illuminate\Notifications\Notifiable;
 use Laravel\Sanctum\HasApiTokens;
 
-class MenuItems extends Authenticatable
+class MenuItems extends Model
 {
     use HasApiTokens, HasFactory, Notifiable;
 
@@ -20,7 +21,9 @@ class MenuItems extends Authenticatable
     protected $table = 'menu';
 
     protected $fillable = [
-        'title',
+        'title_nl',
+        'title_de',
+        'title_en',
         'page_id',
         'order_id',
         'parent_id',
@@ -30,8 +33,9 @@ class MenuItems extends Authenticatable
         'show_menu',
     ];
 
-    public function pages(): \Illuminate\Database\Eloquent\Relations\BelongsTo
+
+    public function page(): \Illuminate\Database\Eloquent\Relations\HasOne
     {
-        return $this->belongsTo(Page::class, 'page_id', 'id');
+        return $this->HasOne(Page::class, 'id', 'page_id');
     }
 }

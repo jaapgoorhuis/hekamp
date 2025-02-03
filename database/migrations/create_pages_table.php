@@ -16,9 +16,15 @@ return new class extends Migration
             $table->string('title')->nullable();
             $table->string('route')->nullable();
             $table->string('page_type')->nullable();
-            $table->string('meta_title')->nullable();
-            $table->string('meta_description')->nullable();
-            $table->string('meta_keywords')->nullable();
+            $table->string('meta_title_nl')->nullable();
+            $table->string('meta_title_de')->nullable();
+            $table->string('meta_title_en')->nullable();
+            $table->string('meta_description_nl')->nullable();
+            $table->string('meta_description_de')->nullable();
+            $table->string('meta_description_en')->nullable();
+            $table->string('meta_keywords_nl')->nullable();
+            $table->string('meta_keywords_de')->nullable();
+            $table->string('meta_keywords_en')->nullable();
             $table->string('meta_robots')->nullable();
             $table->integer('is_removable')->nullable();
             $table->integer('is_vissible')->nullable();

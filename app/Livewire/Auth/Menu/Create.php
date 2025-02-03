@@ -22,7 +22,9 @@ class Create extends Component
     public $pages;
     public $show_footer = '1';
     public $show_menu = '1';
-    public $title;
+    public $title_nl;
+    public $title_de;
+    public $title_en;
     public $order_id = '1';
     public $latest_menu_item;
 
@@ -35,7 +37,7 @@ class Create extends Component
 
 
     protected $rules = [
-        'title' => 'required|unique:menu',
+        'title_nl' => 'required|unique:menu',
 
     ];
 
@@ -58,7 +60,9 @@ class Create extends Component
 
 
         MenuItems::create([
-            'title' => $this->title,
+            'title_nl' => $this->title_nl,
+            'title_de' => $this->title_de,
+            'title_en' => $this->title_en,
             'page_id' => $this->page_id,
             'order_id' => $this->order_id,
             'parent_id' => '0',

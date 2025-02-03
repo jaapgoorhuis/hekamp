@@ -44,7 +44,7 @@
                         <div wire:ignore>
                             <div class="form-group mb-3" wire:ignore>
                                 <label for="value">Upload een afbeelding:</label><br/>
-                                <input type="file" wire:model="image_url">
+                                <input type="file" wire:model.live="image_url">
                                 @error('value')
                                 <span class="text-danger">{{ $message }}</span>
                                 @enderror
@@ -57,7 +57,7 @@
                             <div wire:ignore>
                                 <div class="form-group mb-3" wire:ignore>
                                     <label for="value">Upload afbeelding links:</label><br/>
-                                    <input type="file" wire:model="image_url">
+                                    <input type="file" wire:model.live="image_url">
                                     @error('value')
                                     <span class="text-danger">{{ $message }}</span>
                                     @enderror
@@ -66,7 +66,7 @@
                                 <div wire:ignore>
                                     <div class="form-group mb-3" wire:ignore>
                                         <label for="value">Upload afbeelding rechts:</label><br/>
-                                        <input type="file" wire:model="image_url2">
+                                        <input type="file" wire:model.live="image_url2">
                                         @error('value')
                                         <span class="text-danger">{{ $message }}</span>
                                         @enderror

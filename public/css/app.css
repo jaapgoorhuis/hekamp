@@ -14,6 +14,92 @@
     white-space: nowrap;
 }
 
+i.bx.bx-info-circle {
+    color: orange;
+}
+
+.flex-grid {
+    display: flex;
+}
+.flex-grid .col {
+    flex: 1;
+}
+.flex-grid-thirds {
+    display: flex;
+    justify-content: space-between;
+}
+.flex-grid-thirds .col {
+    width: 32%;
+}
+
+@media (max-width: 400px) {
+    .flex-grid,
+    .flex-grid-thirds {
+        display: block;
+        .col {
+            width: 100%;
+            margin: 0 0 10px 0;
+        }
+    }
+}
+
+
+
+
+* {
+    box-sizing: border-box;
+}
+body {
+    padding: 20px;
+}
+.flex-grid {
+    margin: 0 0 20px 0;
+}
+.col {
+    padding: 20px;
+}
+
+.sorting-col {
+    max-width:50px;
+}
+
+.accordion-button:focus {
+    border:none !important;
+    box-shadow:none !important;
+}
+
+.accordion-button:not(.collapsed) {
+    background: white ;
+    border-bottom:1px solid #3a4953;
+}
+
+.accordion-button::after {
+    position: absolute;
+    right:10px;
+    top:10px;
+}
+
+i.bx.bxs-user-detail {
+    color: #3a4953;
+    font-size: 35px;
+    padding-top: 20px;
+    margin-right: -25px;
+}
+
+.sorting-col:hover {
+    cursor:pointer;
+}
+
+.accordion-body {
+    position: relative;
+}
+
+span.back-text {
+    position: absolute;
+    right: 15px;
+    line-height: 30px;
+}
+
 .note-btn-group.open > .note-dropdown-menu {
     display: block;
     margin-top:30px;
@@ -30,6 +116,7 @@ a.breadcrumb-item {
 
 .project-upload-preview-box img {
     max-width: 100%;
+    width:100%;
 }
 
 .project-upload-preview-box {
@@ -100,6 +187,55 @@ a.close-card {
     --bs-card-cap-color:white;
 }
 
+.nav2 {
+        display: flex;
+        flex-wrap: wrap;
+        padding-left: 0;
+        margin-bottom: 0;
+        list-style: none;
+
+}
+
+.nav-link {
+    padding:10px;
+}
+.nav-link.active {
+    color: #d31515 !important;
+}
+
+i.bx.bx-arrow-back {
+    font-size: 30px;
+}
+
+a.style-none {
+    color: white;
+}
+
+a.back-arrow {
+    color: white;
+    margin-right:50px;
+}
+
+
+.form-control::placeholder {
+    color: #cbcbcb;
+}
+
+.form-control::-ms-input-placeholder {
+    color: #cbcbcb;
+}
+
+
+
+a.style-none:hover {
+    color:#ae9250;
+}
+
+.tab-content>.active {
+    width:100%;
+    color: black;
+    margin-top:20px;
+}
 .modal-backdrop.fade.show {
     width: 100%;
 }

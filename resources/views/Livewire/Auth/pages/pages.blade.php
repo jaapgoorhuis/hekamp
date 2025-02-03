@@ -14,7 +14,7 @@
                             </div>
                         @endif
 
-                        <a wire:click.defer='createPage()' class="plus-icon">
+                        <a wire:click='createPage()' class="plus-icon">
                             <i class='bx bxs-file-plus plus-icon'></i>
                         </a>
 
@@ -24,7 +24,9 @@
                             <tr>
                                 <th>Pagina</th>
                                 <th>Route</th>
-                                <th style="width: 100px">Blokken</th>
+                                @if(Auth::user()->role_id > 2)
+                                    <th style="width: 100px">Blokken</th>
+                                @endif
                                 <th style="width: 100px">Bewerken</th>
                                 <th style="width: 100px">Verwijderen</th>
                             </tr>
@@ -34,9 +36,11 @@
                                 <tr wire:key="{{$page}}">
                                     <td>{{$page->title}}</td>
                                     <td>{{$page->route}}</td>
-                                    <td style="max-width: 60px">
-                                        <button wire:click="pageBlocks({{$page->id}})" class="btn btn-primary btn-sm">Blokken</button>
-                                    </td>
+                                    @if(Auth::user()->role_id > 2)
+                                        <td style="max-width: 60px">
+                                            <button wire:click="pageBlocks({{$page->id}})" class="btn btn-primary btn-sm">Blokken</button>
+                                        </td>
+                                    @endif
                                     <td style="max-width: 60px;">
                                         <button wire:click="editPage({{$page->id}})" class="btn btn-primary btn-sm">Bewerken</button>
                                     </td>

@@ -5,8 +5,11 @@ namespace App\Livewire\Auth\Pages;
 use App\Models\Page;
 use Illuminate\Support\Facades\Route;
 use Illuminate\Support\Facades\Storage;
+use Livewire\Attributes\On;
 use Livewire\Component;
 use Livewire\WithFileUploads;
+use Spatie\LivewireFilepond\WithFilePond;
+use Spatie\MediaLibrary\MediaCollections\Models\Media;
 
 class Edit extends Component
 {
@@ -15,24 +18,34 @@ class Edit extends Component
     public $title;
     public $route;
     public $page_type;
-    public $meta_title;
-    public $meta_description;
-    public $meta_keywords;
+    public $meta_title_nl;
+    public $meta_title_de;
+    public $meta_title_en;
+    public $meta_description_nl;
+    public $meta_description_de;
+    public $meta_description_en;
+    public $meta_keywords_nl;
+    public $meta_keywords_de;
+    public $meta_keywords_en;
     public $meta_robots;
     public $is_removable;
     public $is_active;
-    public $header_image;
+    public $header_image = [];
     public $show_header;
     public $show_footer;
+    public $mediaItems;
     public $header_text;
     public $fileUploaded = false;
 
     use WithFileUploads;
+    use WithFilePond;
 
     protected $rules = [
         'title' => 'required',
         'route' => 'required',
-        'meta_description' => 'max:155'
+        'meta_description_nl' => 'max:155',
+        'meta_description_de' => 'max:155',
+        'meta_description_en' => 'max:155'
     ];
 
 
@@ -42,57 +55,52 @@ class Edit extends Component
         $this->title = $this->page->title;
         $this->route = $this->page->route;
         $this->page_type = $this->page->page_type;
-        $this->meta_title = $this->page->meta_title;
-        $this->meta_description = $this->page->meta_description;
-        $this->meta_keywords = $this->page->meta_keywords;
+        $this->meta_title_nl = $this->page->meta_title_nl;
+        $this->meta_title_de = $this->page->meta_title_de;
+        $this->meta_title_en = $this->page->meta_title_en;
+        $this->meta_description_nl = $this->page->meta_description_nl;
+        $this->meta_description_de = $this->page->meta_description_de;
+        $this->meta_description_en = $this->page->meta_description_en;
+        $this->meta_keywords_nl = $this->page->meta_keywords_nl;
+        $this->meta_keywords_de = $this->page->meta_keywords_de;
+        $this->meta_keywords_en = $this->page->meta_keywords_en;
         $this->meta_robots = $this->page->meta_robots;
         $this->is_removable = $this->page->is_removable;
         $this->is_active = $this->page->is_active;
         $this->header_text = $this->page->header_text;
-        $this->header_image = $this->page->header_image;
         $this->show_footer = $this->page->show_footer;
         $this->show_header = $this->page->show_header;
     }
 
     public function render()
     {
+        $this->mediaItems = $this->page->getMedia('files');
         return view('livewire.auth.pages.edit');
     }
 
     public function editPage() {
         $this->validate();
 
-
-        if($this->header_image) {
-            if(is_string($this->header_image)) {
-                $headerimage = $this->header_image;
-            }
-            else {
-
-                $headerimage = $this->header_image->getClientOriginalName();
-
-                $this->header_image->storeAs('/public/images/frontend/uploads', $headerimage);
-            }
-        } else {
-            $headerimage = '';
-        }
-
-
         Page::whereId($this->id)->update([
             'title' => $this->title,
             'route' => $this->route,
             'page_type' => $this->page_type,
-            'meta_title' => $this->title,
-            'meta_description' => $this->meta_description,
-            'meta_keywords' => $this->meta_keywords,
-            'meta_robots' => '',
+            'meta_title_nl' => $this->meta_title_nl,
+            'meta_title_de' => $this->meta_title_de,
+            'meta_title_en' => $this->meta_title_en,
+            'meta_description_nl' => $this->meta_description_nl,
+            'meta_description_de' => $this->meta_description_de,
+            'meta_description_en' => $this->meta_description_en,
+            'meta_keywords_nl' => $this->meta_keywords_nl,
+            'meta_keywords_de' => $this->meta_keywords_de,
+            'meta_keywords_en' => $this->meta_keywords_en,
             'is_removable' => $this->is_removable,
             'is_active' => $this->is_active,
-            'header_image' => $headerimage,
             'show_footer' => $this->show_footer,
             'show_header'=> $this->show_header,
             'header_text' => $this->header_text
         ]);
+
 
         session()->flash('success','Pagina geupdate');
 
@@ -102,16 +110,43 @@ class Edit extends Component
         return $this->redirect('/auth/pages', navigate: true);
     }
 
-    public function removeHeaderImage () {
+    #[On('removeFiles')]
+    public function removeFiles($filename) {
+        Media::where('file_name',$filename)->delete();
+    }
 
-        if(Storage::exists('/public/images/frontend/uploads/'.$this->header_image)) {
-            Storage::delete('/public/images/frontend/uploads/'.$this->header_image);
+    public function removeExistingFiles($id) {
+
+        foreach($this->mediaItems as $mediaitem) {
+            if($mediaitem->id == $id) {
+                $mediaitem->delete();
+            }
+        }
+        $this->dispatch('pondReset');
+    }
+
+    #[On('uploadFiles')]
+    public function uploadFiles() {
+        $page = Page::orderBy('id', 'desc')->first();
+
+        $mediaItems = $page->getMedia('files');
+
+
+        foreach($mediaItems as $item) {
+            $item->delete();
         }
 
-        $this->page->update([
-            'header_image' => ''
-        ]);
+        if(Storage::disk('tmp')->exists($this->header_image->getFileName())) {
+            $page->addMedia($this->header_image->getRealPath())->withCustomProperties(['extension' => $this->header_image->getClientOriginalExtension()])->toMediaCollection('files');
+        }
 
-        $this->header_image = '';
+        $this->dispatch('updated');
     }
+
+    public function updateFileName($value, $value2) {
+        $this->mediaId = $value;
+        Media::where('id', $this->mediaId)->update(['friendly_name' => $value2]);
+    }
+
+
 }

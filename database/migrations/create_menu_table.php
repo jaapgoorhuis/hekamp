@@ -13,7 +13,9 @@ return new class extends Migration
     {
         Schema::create('menu', function (Blueprint $table) {
             $table->id();
-            $table->string('title');
+            $table->string('title_nl')->nullable();
+            $table->string('title_de')->nullable();
+            $table->string('title_en')->nullable();
             $table->integer('page_id');
             $table->integer('order_id');
             $table->integer('parent_id');

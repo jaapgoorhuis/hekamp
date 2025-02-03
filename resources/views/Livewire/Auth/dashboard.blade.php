@@ -7,6 +7,8 @@
                     @if ($errors->has('no_access'))
                         <span class="text-danger">{{ $errors->first('no_access') }}</span>
                     @endif
+                    Welkom in de backend van {{env('APP_NAME')}}. <br/>
+                    Hier kun je de website bewerken.
                 </div>
             </div>
         </div>

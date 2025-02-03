@@ -30,6 +30,14 @@ return [
 
     'disks' => [
 
+        'media' => [
+            'driver' => 'local',
+            'root'   => public_path('media'),
+            'url'    => env('APP_URL').'/media',
+            'visibility' => 'public',
+            'throw' => false,
+        ],
+
         'local' => [
             'driver' => 'local',
             'root' => storage_path('app'),
@@ -40,6 +48,14 @@ return [
             'driver' => 'local',
             'root' => storage_path('app/public'),
             'url' => env('APP_URL').'/storage',
+            'visibility' => 'public',
+            'throw' => false,
+        ],
+
+        'tmp' => [
+            'driver' => 'local',
+            'root' => storage_path('app/livewire-tmp'),
+            'url' => env('APP_URL').'/storage/app/livewire-tmp',
             'visibility' => 'public',
             'throw' => false,
         ],

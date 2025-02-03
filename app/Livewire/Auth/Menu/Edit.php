@@ -22,7 +22,9 @@ class Edit extends Component
     public $pages;
     public $show_footer;
     public $show_menu;
-    public $title;
+    public $title_nl;
+    public $title_de;
+    public $title_en;
     public $order_id;
     public $id;
     public $menu_item;
@@ -35,13 +37,18 @@ class Edit extends Component
         $this->menu_item = MenuItems::where('id', $this->id)->first();
         $this->page_id = $this->menu_item->page_id;
         $this->show_footer = $this->menu_item->show_footer;
-        $this->title = $this->menu_item->title;
-        $this->show_menu = $this->menu_item->show_footer;
+        $this->title_nl = $this->menu_item->title_nl;
+        $this->title_de = $this->menu_item->title_de;
+        $this->title_en = $this->menu_item->title_en;
+        $this->show_menu = $this->menu_item->show_menu;
     }
 
-    protected $rules = [
-        'title' => 'required|unique:menu',
-    ];
+    public function rules()
+    {
+        return [
+            'title_nl' => 'required|min:2|unique:menu,title_nl,' . $this->id,
+        ];
+    }
 
     public function render()
     {
@@ -50,10 +57,12 @@ class Edit extends Component
     }
 
     public function updateMenu() {
-        $this->validate();
+        $this->validate($this->rules());
 
         MenuItems::where('id', $this->id)->update([
-            'title' => $this->title,
+            'title_nl' => $this->title_nl,
+            'title_de' => $this->title_de,
+            'title_en' => $this->title_en,
             'page_id' => $this->page_id,
             'order_id' => $this->menu_item->order_id,
             'parent_id' => '0',

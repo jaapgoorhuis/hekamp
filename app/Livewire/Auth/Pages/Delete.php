@@ -25,9 +25,18 @@ class Delete extends Component
 
     public function remove()
     {
-        Page::find($this->id)->delete();
+        $page = Page::find($this->id);
+
+        $media = $page->getMedia('files');
+        foreach($media as $item) {
+            $item->delete();
+        }
+
+        $page->delete();
 
         PageBlock::where('page_id', $this->id)->delete();
+
+
 
         session()->flash('success',"De pagina is verwijderd");
 

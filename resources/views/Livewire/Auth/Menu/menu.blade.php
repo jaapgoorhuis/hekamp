@@ -14,7 +14,7 @@
                             </div>
                         @endif
 
-                        <a wire:click.defer='createMenu()' class="plus-icon">
+                        <a wire:click='createMenu()' class="plus-icon">
                             <i class='bx bxs-file-plus plus-icon'></i>
                         </a>
                         <table class="table table-striped nowrap" style="width:100%">
@@ -31,7 +31,7 @@
                             @foreach($this->menu_items as $item)
                                 <tr wire:sortable.item="{{$item->id}}" wire:key="project_{{$item->id}}">
                                     <td wire:sortable.handle class="sort-item"><i class="fa-solid fa-ellipsis-vertical"></i></td>
-                                    <td>{!! $item->title!!}</td>
+                                    <td>{!! $item->title_nl!!}</td>
                                     <td style="max-width: 60px;">
                                         <button wire:click="editMenu({{$item->id}})" class="btn btn-primary btn-sm">Bewerken</button>
                                     </td>

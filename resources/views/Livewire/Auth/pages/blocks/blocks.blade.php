@@ -14,7 +14,7 @@
                             </div>
                         @endif
 
-                        <a wire:click.defer='choosePageBlock()' class="plus-icon">
+                        <a wire:click='choosePageBlock()' class="plus-icon">
                             <i class='bx bxs-file-plus plus-icon'></i>
                         </a>
 

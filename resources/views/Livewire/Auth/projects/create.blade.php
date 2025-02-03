@@ -14,7 +14,7 @@
                         <div class="form-section">
                             <div class="form-group mb-3">
                                 <label for="title">Project titel:</label>
-                                <input type="text" class="form-control @error('title') is-invalid @enderror" id="title" placeholder="Homepagina" wire:model="title">
+                                <input type="text" class="form-control @error('title') is-invalid @enderror" id="title" placeholder="Homepagina" wire:model.live="title">
                                 @error('title')
                                 <span class="text-danger">{{ $message }}</span>
                                 @enderror
@@ -22,7 +22,7 @@
                             <div class="form-group mb-3">
                                 <label for="route">Project url:</label><br/>
                                 <small class="sub-label-admin">Geef het project een eenvoudige duidelijke url. <b>Let op:</b> gebruik geen spaties</small>
-                                <input class="form-control @error('friendly_route') is-invalid @enderror" id="friendly_route" wire:model="friendly_route" placeholder="crewa">
+                                <input class="form-control @error('friendly_route') is-invalid @enderror" id="friendly_route" wire:model.live="friendly_route" placeholder="crewa">
                                 @error('friendly_route')
                                 <span class="text-danger">{{ $message }}</span>
                                 @enderror
@@ -30,7 +30,7 @@
                             <div class="form-group mb-3">
                                 <label for="route">Project categorie:</label><br/>
                                 <small class="sub-label-admin">Kies binnen welke categorie het project valt</small>
-                                <select wire:model="project_category_id" class="form-control">
+                                <select wire:model.live="project_category_id" class="form-control">
                                     @foreach($projectCategorys as $categorys)
                                     <option value="{{$categorys->id}}">{{$categorys->title}}</option>
                                     @endforeach
@@ -43,7 +43,7 @@
                             <div class="form-group mb-3">
                                 <label for="route">Website url:</label><br/>
                                 <small class="sub-label-admin">Voer hier de website url van het project in</small>
-                                <input class="form-control @error('url') is-invalid @enderror" id="url" wire:model="url" placeholder="crewa.nl">
+                                <input class="form-control @error('url') is-invalid @enderror" id="url" wire:model.live="url" placeholder="crewa.nl">
                                 @error('url')
                                 <span class="text-danger">{{ $message }}</span>
                                 @enderror
@@ -65,7 +65,7 @@
 
                                     <label for="header_image">Project afbeelding:</label>
                                     <small class="sub-label-admin">Deze afbeelding is zichtbaar op de projecten pagina als hoofd afbeelding</small>
-                                    <input type="file" class="form-control @error('tumbnail') is-invalid @enderror" id="tumbnail" wire:model="tumbnail">
+                                    <input type="file" class="form-control @error('tumbnail') is-invalid @enderror" id="tumbnail" wire:model.live="tumbnail">
 
                                     <div
                                         class="bg-blue-500 h-[2px]"
@@ -102,7 +102,7 @@
                                 <div class="form-group mb-3" wire:ignore>
                                     <label for="header_text">Korte project beschrijving:</label><br/>
                                     <small class="sub-label-admin">Zorg er voor dat deze tekst kort en krachtig is.</small>
-                                    <textarea id="small_description" wire:model.defer="small_description"></textarea>
+                                    <textarea id="small_description" wire:model="small_description"></textarea>
                                     @error('small_description')
                                     <span class="text-danger">{{ $message }}</span>
                                     @enderror
@@ -119,7 +119,7 @@
                                 <div class="form-group mb-3" wire:ignore>
                                     <label for="header_text">Lange project beschrijving:</label><br/>
                                     <small class="sub-label-admin">Beschrijf hier het project. Wat je gedaan hebt, voor wie je wat gedaan hebt enzovoort.</small>
-                                    <textarea id="description" wire:model.defer="description"></textarea>
+                                    <textarea id="description" wire:model="description"></textarea>
                                     @error('description')
                                     <span class="text-danger">{{ $message }}</span>
                                     @enderror
@@ -142,7 +142,7 @@
 
                                     <label for="header_image">Project afbeelding:</label>
                                     <small class="sub-label-admin">Deze afbeelding is zichtbaar op de projecten pagina als hoofd afbeelding</small>
-                                    <input type="file" class="form-control @error('project_images') is-invalid @enderror" id="project_images" wire:model="project_images" multiple>
+                                    <input type="file" class="form-control @error('project_images') is-invalid @enderror" id="project_images" wire:model.live="project_images" multiple>
 
                                     <div x-show="isUploadingProjectImages">
                                         <span>Uploaden...</span>

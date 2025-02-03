@@ -1,49 +1,69 @@
 
 <div class="footer">
-    <div class="container footer-container">
-        <div class="footer-inner">
-            <div class="footer-box footer-box-left">
-                <img alt="Crewa logo" class="footer-logo" src="{{asset('/storage/images/frontend/logo-gold-white.png')}}"/>
-                <div class="footer-text">
-                   <div class="adres">
-                        <div class="adres-icon">
-                            <i class="fa-solid fa-location-dot"></i>
-                        </div>
-                       <div class="adres-details">
-                            <a target="_blank" href="https://maps.app.goo.gl/k8spNgsV4i5fwZV58">
-                            Hulstweg 24 BIS<br/>
-                            3774TM Kootwijkerbroek
-                            </a>
-                       </div>
-                   </div>
-                    </p>
-                </div>
-                <div class="footer-icons">
-                    <p><i class="fa-solid fa-phone-volume"></i><a href="tel:0631933506">06 - 31 93 35 06</a></p>
-                    <p><i class="fa-regular fa-envelope"></i><a href="mailto:info@crewa.nl">INFO@CREWA.NL</a></p>
-                </div>
-            </div>
-            <div class="footer-box footer-box-right">
-                <h3><span class="color-white">Sitemap</span></h3>
-                <div class="stripe"></div>
-                <ul class="footer-menu-items" style="list-style: none">
-                   @foreach($menu_items as $item)
-                    <li><a href="{{$item->pages->route}}">{{$item->title}}</a></li>
+    <div class="container">
+        <div class="row">
+            <div class="col-12 col-md-4">
+                <h2>{{__('pages.pages')}}</h2>
+                <ul class="footer-items">
+                    @foreach(\App\Models\MenuItems::orderBy('order_id', 'asc')->where('show_footer', '1')->get() as $item)
+                        @if($item->page)
+                         <li><a href="/{{$item->page->route}}">
 
-                   @endforeach
+                                 @if( $item['title_'.\Illuminate\Support\Facades\App::currentLocale()] == '')
+                                     {{$item['title_nl']}}
+                                 @else
+                                     {!! $item['title_'.\Illuminate\Support\Facades\App::currentLocale()]!!}
+                                 @endif
+                        </a></li>
+                        @endif
+                    @endforeach
+
+                </ul>
+            </div>
+            <div class="col-12 col-md-4">
+                <h2>{{__('pages.downloads')}}</h2>
+                <ul class="footer-items">
+                    @foreach($downloads as $key => $media)
+                    <li><a data-bs-toggle="modal" data-bs-target="#exampleModal{{$key}}">{{$media->friendly_name}}</a></li>
+                        <!-- Modal -->
+                        <div class="modal fade modal-xl" id="exampleModal{{$key}}"  tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+                            <div class="modal-dialog modal-dialog-centered" role="document">
+                                <div class="modal-content">
+                                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                                    <iframe class="responsive-iframe" src=" {{$media->getFullUrl()}}"></iframe>
+                                </div>
+                            </div>
+                        </div>
+
+                    @endforeach
                 </ul>
 
-                <h3><span class="color-white">Beoordelingen</span></h3>
-                <div class="stripe"></div>
-                <div data-romw-token="EVz59qfBrAHojum6yfktobB4vhZ0JEgo9hEwNia6bumWFz3z7R"></div>
-                <script src="https://reviewsonmywebsite.com/js/v2/embed.js?id=7bf8acda5d5930b1a9db343a4ec1b31c" type="text/javascript"></script>
-                <a href="https://www.google.com/search?sa=X&sca_esv=0dcc3d4151cae03d&rlz=1C1CHBD_nlNL1082NL1082&hl=nl-NL&tbm=lcl&q=Crews%20Reviews&rflfq=1&num=20&stick=H4sIAAAAAAAAAONgkxI2NjG3MDExMDc1t7A0NDU2NzUz28DI-IqR17kotbxYISi1LBNIL2JF5QMAKHagXjoAAAA&rldimm=3478440757891537566&ved=0CAsQ5foLahcKEwjwvJ-Ewc6EAxUAAAAAHQAAAAAQBQ&biw=1745&bih=859&dpr=1.1#lkt=LocalPoiReviews&arid=ChZDSUhNMG9nS0VJQ0FnSURkajhDZFNnEAE">Lees meer reviews...</a>
 
             </div>
-        </div>
-
-        <div class="footer-line col-md-12">
-            <p>Crewa | 2024</p>
+            <div class="col-12 col-md-4">
+                <h2>{{__('pages.contact_details')}}</h2>
+                <ul class="footer-items">
+                    <li>{{$site_settings->site_name}}</li>
+                    <li>{{$site_settings->address}}</li>
+                    <li>{{$site_settings->zipcode}} {{$site_settings->town}} </li>
+                    <li>{{$site_settings->province}}</li>
+                    @if($site_settings->phone)
+                        <li><a href="tel:{{$site_settings->phone}}"><i class='bx bx-phone'></i> {{$site_settings->phone}}</a></li>
+                    @endif
+                    @if($site_settings->mobile_phone)
+                        <li><a href="tel:{{$site_settings->mobile_phone}}"><i class='bx bx-mobile-alt'></i> {{$site_settings->mobile_phone}}</a></li>
+                    @endif
+                    @if($site_settings->email)
+                        <li><a href="mailto:{{$site_settings->email}}"><i class='bx bx-envelope'></i> {{$site_settings->email}}</a></li>
+                    @endif
+                    @if($site_settings->second_email)
+                        <li><a href="mailto:{{$site_settings->second_email}}"><i class='bx bx-envelope' ></i> {{$site_settings->second_email}}</a></li>
+                    @endif
+                </ul>
+            </div>
         </div>
     </div>
+
 </div>
+
+

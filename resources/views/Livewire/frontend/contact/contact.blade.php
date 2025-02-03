@@ -46,7 +46,7 @@
                                 <div class="col-md-6">
                                     <div class="md-form mb-0">
                                         <label for="name" class="">Je naam</label>
-                                        <input type="text" id="name" wire:model="name" class="form-control @error('name') is-invalid @enderror">
+                                        <input type="text" id="name" wire:model.live="name" class="form-control @error('name') is-invalid @enderror">
 
                                          @error('name')
                                         <span class="text-danger">{{ $message }}</span>
@@ -56,7 +56,7 @@
                                 <div class="col-md-6">
                                     <div class="md-form mb-0">
                                         <label for="email" class="">Je email adres</label>
-                                        <input type="text" id="email" wire:model="email" class="form-control @error('email') is-invalid @enderror">
+                                        <input type="text" id="email" wire:model.live="email" class="form-control @error('email') is-invalid @enderror">
                                         @error('email')
                                         <span class="text-danger">{{ $message }}</span>
                                         @enderror
@@ -68,7 +68,7 @@
                                 <div class="col-md-12">
                                     <div class="md-form mb-0">
                                         <label for="subject" class="">Onderwerp</label>
-                                        <input type="text" id="subject" wire:model="subject" class="form-control @error('subject') is-invalid @enderror">
+                                        <input type="text" id="subject" wire:model.live="subject" class="form-control @error('subject') is-invalid @enderror">
                                         @error('subject')
                                         <span class="text-danger">{{ $message }}</span>
                                         @enderror
@@ -80,7 +80,7 @@
                                 <div class="col-md-12">
                                     <div class="md-form">
                                         <label for="message">Je vraag/opmerking</label>
-                                        <textarea id="message" wire:model="bericht" rows="4" class="form-control md-textarea @error('bericht') is-invalid @enderror"></textarea>
+                                        <textarea id="message" wire:model.live="bericht" rows="4" class="form-control md-textarea @error('bericht') is-invalid @enderror"></textarea>
                                         @error('bericht')
                                         <span class="text-danger">{{ $message }}</span>
                                         @enderror

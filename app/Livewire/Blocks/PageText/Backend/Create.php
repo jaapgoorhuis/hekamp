@@ -29,7 +29,7 @@ class Create extends Component
 
     public function storeBlock() {
 
-        DB::table('text_block')->insert(['value' => $this->value]);
+        DB::table('text_block')->insert(['value_nl' => $this->value]);
 
         $latestBlock = DB::table('text_block')->orderBy('id', 'desc')->first();
 
