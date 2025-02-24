@@ -1,14 +1,16 @@
 <p>Er is een nieuw bericht via het contact formulier</p>
-<br>
-<br>
-<p>Naam:</p><br/>
+
+Naam:<br/>
 {{$name}}<br/><br/>
 
-<p>Email:</p><br/>
+Bedrijfsnaam:<br/>
+{{$company_name}}<br/><br/>
+
+Email:<br/>
 {{$email}}<br/><br/>
 
-<p>Onderwerp:</p><br/>
-{{$subject}}<br/><br/>
+Telefoonnummer:<br/>
+{{$phone}}<br/><br/>
 
-<p>Bericht:</p><br/>
+Bericht:<br/>
 {{$bericht}}<br/><br/>

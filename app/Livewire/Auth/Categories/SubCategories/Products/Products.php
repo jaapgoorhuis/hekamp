@@ -22,6 +22,13 @@ class Products extends Component
 
     public function render()
     {
+        $deletedProducts = Product::get();
+        foreach($deletedProducts as $deleted) {
+            if($deleted->title_nl == '') {
+                $deleted->delete();
+            }
+        }
+
         $this->products = Product::where('subCategory_id',$this->slug)->orderBy('order_id')->get();
         $this->headCategory = Categorie::where('id',$this->id)->first();
         $this->subCategory = SubCategorie::where('id', $this->slug)->first();

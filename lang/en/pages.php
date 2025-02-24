@@ -27,4 +27,12 @@ return [
     'no-products-content' => 'There are no products in the category. Please try again later.',
     'searchResults' => 'Search results',
     'no-search-results' => 'No products found. Please try another search',
+    'name' => 'Name',
+    'company_name' => 'Company name',
+    'phone' => 'Phonenumber',
+    'email' => 'E-Mail',
+    'message' => 'message',
+    'send' => 'Send',
+    'popularProducts' => 'Populair products',
+    'areHuman' => 'Are u human?'
 ];

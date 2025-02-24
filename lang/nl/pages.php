@@ -27,5 +27,14 @@ return [
     'no-products-content' => 'Er zijn nog geen producten in deze categorie. Probeer het later nog eens.',
     'searchResults' => 'Zoekresultaten',
     'no-search-results' => 'Er zijn geen producten gevonden. Probeer een andere zoekopdracht.',
+    'name' => 'Naam',
+    'company_name' => 'Bedrijfsnaam',
+    'phone' => 'Telefoonnummer',
+    'email' => 'E-Mail',
+    'message' => 'Bericht',
+    'send' => 'Versturen',
+    'popularProducts' => 'Populaire producten',
+    'areHuman' => 'Ben je een mens?'
+
 
 ];

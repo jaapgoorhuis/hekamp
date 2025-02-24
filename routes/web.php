@@ -129,16 +129,14 @@ Route::post('reset-password', [ForgotPasswordController::class, 'submitResetPass
         $authUser = User::find(Auth::id());
         $page = Page::where('route', $slug)->first();
         $isSubCategory = \App\Models\SubCategorie::where('route',$route)->first();
-
-
-
+        $settings = \App\Models\Site::find(1);
 
         $menu_items = \App\Models\MenuItems::orderBy('order_id', 'asc')->get();
         $siteSettings = \App\Models\Site::find(1);
         $categories = \App\Models\Categorie::orderBy('order_id', 'asc')->get();
         $downloads = \Spatie\MediaLibrary\MediaCollections\Models\Media::where('collection_name', 'downloads')->orderBy('order_column', 'asc')->get();
         $subcategories = \App\Models\SubCategorie::where('show_home', '1')->orderBy('order_id', 'asc')->get();
-        view()->share(['page' => $page, 'authUser' => $authUser, 'menu_items' => $menu_items, 'categories' => $categories, 'slug' => $slug, 'route' => $route, 'locale' => $locale, 'site_settings'=> $siteSettings, 'downloads' => $downloads, 'subcategories' => $subcategories]);
+        view()->share(['page' => $page, 'authUser' => $authUser, 'settings' => $settings, 'menu_items' => $menu_items, 'categories' => $categories, 'slug' => $slug, 'route' => $route, 'locale' => $locale, 'site_settings'=> $siteSettings, 'downloads' => $downloads, 'subcategories' => $subcategories]);
 
         if($page) {
             $view = $page->page_type;

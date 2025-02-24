@@ -12,19 +12,22 @@ class SendContactFormMail extends Mailable
 {
     use Queueable, SerializesModels;
 
-    public $name, $email, $bericht, $subject;
-    public function __construct($name, $email, $bericht, $subject)
+    public $name, $company_name, $email, $phone, $bericht;
+    public function __construct($name, $company_name, $email, $phone, $bericht)
     {
         $this->name = $name;
+        $this->company_name = $company_name;
         $this->email = $email;
-        $this->subject = $subject;
+        $this->phone = $phone;
         $this->bericht = $bericht;
+
+
     }
 
     public function envelope(): Envelope
     {
         return new Envelope(
-            subject: 'Send Contact Form Mail',
+            subject: 'Contact formulier verzonden',
         );
     }
 

@@ -12,7 +12,7 @@
 
                         <br/>
 
-                        <ul class="nav2 nav-tabs" id="myTab" role="tablist">
+                        <ul wire:ignore class="nav2 nav-tabs" id="myTab" role="tablist">
                             <li class="nav-item" role="presentation">
                                 <button class="nav-link active" id="nl-tab" data-bs-toggle="tab" data-bs-target="#nl-title-tab-pane" type="button" role="tab" aria-controls="nl-title-tab-pane" aria-selected="true">NL</button>
                             </li>
@@ -24,7 +24,7 @@
                             </li>
 
                         </ul>
-                        <div class="tab-content" id="myTabContent">
+                        <div wire:ignore class="tab-content" id="myTabContent">
                             <div class="tab-pane fade show active" id="nl-title-tab-pane" role="tabpanel" aria-labelledby="nl-title-tab" tabindex="0">
                                 <div class="form-section">
                                     <div class="form-group mb-3">
@@ -227,16 +227,16 @@
                             </div>
                         @endif
 
-                        @if(count($this->videos))
+                        @if(count($this->downloads))
                             <hr class="rounded">
-                            <h5 class="form-section-title">Videos:</h5>
-                            <small>De volgorde van de videos zijn aan te passen door ze op volgorde te slepen. </small>
+                            <h5 class="form-section-title">downloads:</h5>
+                            <small>De volgorde van de downloads zijn aan te passen door ze op volgorde te slepen. </small>
                             <br/>
                             <br/>
                             <br/>
                             <div class="accordion" id="accordionExample">
                                 <ul style="list-style: none; padding:0px" wire:sortable="updateImageOrder" >
-                                    @foreach($this->videos as $items)
+                                    @foreach($this->downloads as $items)
                                         <li wire:sortable.item="{{$items->id}}" wire:key="items_{{$items->id}}" wire:sortable.handle>
                                             <div class="flex-grid">
                                                 <div class="col sorting-col">
@@ -245,7 +245,7 @@
                                                 <div class="col accordion-item">
                                                     <h2 class="accordion-header">
                                                         <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapseThree_{{$items->id}}" aria-expanded="false" aria-controls="collapseThree">
-                                                            <img src="{!! $items['original_url'] !!}" style="width:150px;"/>
+                                                            {{$items->friendly_name}}
                                                         </button>
                                                     </h2>
                                                     <div wire:ignore>
@@ -275,53 +275,7 @@
                             </div>
                         @endif
 
-                        @if(count($this->pdffiles))
-                            <hr class="rounded">
-                            <h5 class="form-section-title">PDF bestanden:</h5>
-                            <small>De volgorde van de pdfbestanden zijn aan te passen door ze op volgorde te slepen. </small>
-                            <br/>
-                            <br/>
-                            <br/>
-                            <div class="accordion" id="accordionExample">
-                                <ul style="list-style: none; padding:0px" wire:sortable="updateImageOrder" >
-                                    @foreach($this->pdffiles as $items)
-                                        <li wire:sortable.item="{{$items->id}}" wire:key="items_{{$items->id}}" wire:sortable.handle>
-                                            <div class="flex-grid">
-                                                <div class="col sorting-col">
-                                                    <i class="fa-solid fa-ellipsis-vertical"></i>
-                                                </div>
-                                                <div class="col accordion-item">
-                                                    <h2 class="accordion-header">
-                                                        <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapseThree_{{$items->id}}" aria-expanded="false" aria-controls="collapseThree">
-                                                            {{$items->friendly_name}}
-                                                        </button>
-                                                    </h2>
-                                                    <div wire:ignore>
-                                                        <div id="collapseThree_{{$items->id}}" style="width:100%;" class="accordion-collapse collapse" data-bs-parent="#accordionExample">
-                                                            <div class="accordion-body">
-                                                                <div class="form-section">
-                                                                    <div class="form-group mb-3">
-                                                                        <label for="friendly_name">Bestandsnaam:</label>
-                                                                        <input type="text" class="form-control @error('friendly_name')is-invalid @enderror" value="{{$items->friendly_name}}" wire:keyup="updateFileName({{$items['id']}},{{'$event.target.value'}})"  id="friendly_name">
 
-                                                                    </div>
-
-                                                                </div>
-                                                                <div class="align-right">
-                                                                    <button wire:click.prevent="removeExistingFiles({{$items['id']}})" class="btn btn-danger btn-sm">Verwijderen</button>
-                                                                </div>
-
-                                                            </div>
-                                                        </div>
-                                                    </div>
-
-                                                </div>
-                                            </div>
-                                        </li>
-                                    @endforeach
-                                </ul>
-                            </div>
-                        @endif
 
 
                         <div class="d-grid gap-2">

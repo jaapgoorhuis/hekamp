@@ -4,7 +4,7 @@
             <div class="card">
                 <div class="card-header d-flex justify-content-between align-items-center">
                     <p>Categorie bewerken</p>
-                    <a class="close-card" href="" wire:click.prevent="cancelPage()"><i class="fa-solid fa-x"></i></a>
+                    <a class="close-card" href="" wire:click.prevent="cancel()"><i class="fa-solid fa-x"></i></a>
                 </div>
                 <div class="card-body">
                     <form  x-data="{ buttonDisabled: false}" x-on:livewire-upload-start="buttonDisabled = true" x-on:livewire-upload-finish="buttonDisabled = false" >

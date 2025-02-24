@@ -132,7 +132,7 @@ class Edit extends Component
         return $this->redirect('/auth/categories/'.$this->headCategoryId.'/subcategories', navigate: true);
     }
     public function cancel() {
-        return $this->redirect('/auth/categories', navigate: true);
+        return $this->redirect('/auth/categories/'.$this->headCategoryId.'/subcategories', navigate: true);
     }
 
     #[On('removeFiles')]
@@ -158,13 +158,13 @@ class Edit extends Component
             $media->delete();
         }
 
-        $this->subCategory->addMedia($this->newTumbnail->getRealPath())->toMediaCollection('tumbnail');
+        $this->subCategory->addMedia($this->newTumbnail->getRealPath())->withCustomProperties(['name' => $this->newTumbnail->getClientOriginalName()])->toMediaCollection('tumbnail');
 
         $uploadedFiles = Media::where('model_id', $this->id)->get();
         foreach($uploadedFiles as $media) {
             if($media->friendly_name == '') {
                 Media::where('id', $media->id)->update([
-                    'friendly_name' => $media->name,
+                    'friendly_name' => $media->getCustomProperty('name'),
                 ]);
             }
 

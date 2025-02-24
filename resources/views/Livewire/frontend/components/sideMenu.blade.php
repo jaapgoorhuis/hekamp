@@ -1,4 +1,4 @@
-<div class="col-12 col-md-12 col-lg-4 col-xl-3 col-xxl-2">
+<div class="col-12 col-md-12 col-lg-3 col-xl-3 col-xxl-2">
 <nav class="navbar navbar-expand-lg bg-light category-navbar">
     <div class="container-fluid category-navbar-container">
         <button class="navbar-toggler category-navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarTogglerDemo01" aria-controls="navbarTogglerDemo01" aria-expanded="false" aria-label="Toggle navigation">
@@ -27,9 +27,11 @@
                                         @endif
                                     </div>
                                     <span class="side-menu-head-title">
-                        @if( $category['title_'.\Illuminate\Support\Facades\App::currentLocale()] == '')
+                                        @if( $category['title_'.\Illuminate\Support\Facades\App::currentLocale()] == '')
                                             {{$category['title_nl']}}
+
                                         @else
+
                                             {!! $category['title_'.\Illuminate\Support\Facades\App::currentLocale()]!!}
                                         @endif
                     </span>
@@ -39,7 +41,15 @@
                             @foreach($category->subCategories()->orderBy('order_id', 'asc')->get() as $subcategory)
                                 <tbody>
                                 <tr>
-                                    <th @if($route == $subcategory->route) class="active" @endif onclick="window.location='/{{$locale}}/{{$category->route}}/{{$subcategory->route}}';" scope="row"><a href="/{{$locale}}/{{$category->route}}/{{$subcategory->route}}">{{$subcategory->title_nl}}</a></th>
+                                    <th @if($route == $subcategory->route) class="active" @endif onclick="window.location='/{{$locale}}/{{$category->route}}/{{$subcategory->route}}';" scope="row">
+                                        <a href="/{{$locale}}/{{$category->route}}/{{$subcategory->route}}">
+                                            @if( $subcategory['title_'.\Illuminate\Support\Facades\App::currentLocale()] == '')
+                                                {{$subcategory['title_nl']}}
+                                            @else
+                                                {!! $subcategory['title_'.\Illuminate\Support\Facades\App::currentLocale()]!!}
+                                            @endif
+                                        </a>
+                                    </th>
                                 </tr>
                                 </tbody>
                             @endforeach

@@ -74,12 +74,14 @@
                 </form>
             </div>
             @endif
+            @if($this->showEditBox == false)
             <div id="showTextBlock_{{$blocks->block_value_id}}">
                 @if($blockContent)
                     <?php $var = 'value_'.\Illuminate\Support\Facades\App::getLocale()?>
                     {!! $blockContent->$var !!}
                 @endif
             </div>
+            @endif
 
     </div>
 

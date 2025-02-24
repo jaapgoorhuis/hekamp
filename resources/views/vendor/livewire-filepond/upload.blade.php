@@ -56,9 +56,6 @@ $pondLocalizations = __('livewire-filepond::filepond');
 
       const pond = LivewireFilePond.create($refs.input);
 
-
-
-
       pond.setOptions({
            onaddfilestart: (file) => { isLoadingCheck(files); },
             onprocessfile: (files) => { isLoadingCheck(files); },
@@ -145,8 +142,6 @@ $pondLocalizations = __('livewire-filepond::filepond');
 
       }
       this.addEventListener('pondReset', e => {
-        console.log(e);
-
             pond.removeFile(e);
         });
 

@@ -59,6 +59,11 @@
                     @if($site_settings->second_email)
                         <li><a href="mailto:{{$site_settings->second_email}}"><i class='bx bx-envelope' ></i> {{$site_settings->second_email}}</a></li>
                     @endif
+                    <li class="social-media-links">
+                        <a target="_blank" href="https://www.instagram.com/hekampnl?utm_source=ig_web_button_share_sheet&igsh=ZDNlZDc0MzIxNw=="><i class='bx bxl-instagram'></i></a>
+                        <a target="_blank" href="https://www.facebook.com/profile.php?id=100066488210268"><i class='bx bxl-facebook'></i></a>
+                        <a target="_blank" href="https://x.com/HekampNL"><i class='bx bxl-twitter'></i></a>
+                    </li>
                 </ul>
             </div>
         </div>

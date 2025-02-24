@@ -169,7 +169,7 @@
                         <hr class="rounded">
                         <h5 class="form-section-title">SEO:</h5>
                         <br/>
-                        <ul class="nav2 nav-tabs" id="myTab" role="tablist">
+                        <ul wire:ignore class="nav2 nav-tabs" id="myTab" role="tablist">
                             <li class="nav-item" role="presentation">
                                 <button class="nav-link active" id="nl-tab" data-bs-toggle="tab" data-bs-target="#nl-seo-tab-pane" type="button" role="tab" aria-controls="nl-seo-tab-pane" aria-selected="true">NL</button>
                             </li>
@@ -182,7 +182,7 @@
 
                         </ul>
 
-                        <div class="tab-content" id="myTabContent">
+                        <div wire:ignore class="tab-content" id="myTabContent">
                             <div class="tab-pane fade show active" id="nl-seo-tab-pane" role="tabpanel" aria-labelledby="nl-text-tab" tabindex="0">
                                 <div class="form-section">
                                     <div class="form-group mb-3">

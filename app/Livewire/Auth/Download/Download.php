@@ -80,7 +80,7 @@ class Download extends Component
         foreach($files as $file) {
             if(!in_array($file->getFileName(),$mediaArray)) {
                 if(Storage::disk('tmp')->exists($file->getFileName())) {
-                    $this->downloads->addMedia($file->getRealPath())->withCustomProperties(['extension' => $file->getClientOriginalExtension()])->toMediaCollection('downloads');
+                    $this->downloads->addMedia($file->getRealPath())->withCustomProperties(['extension' => $file->getClientOriginalExtension(), 'name' => $file->getClientOriginalName()])->toMediaCollection('downloads');
                 }
 
             }
@@ -90,7 +90,7 @@ class Download extends Component
         foreach($uploadedFiles as $media) {
             if($media->friendly_name == '') {
                 Media::where('id', $media->id)->update([
-                    'friendly_name' => $media->name,
+                    'friendly_name' => $media->getCustomProperty('name'),
                 ]);
             }
         }

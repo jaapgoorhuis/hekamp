@@ -112,14 +112,14 @@ class Create extends Component
         if($this->header_image) {
             $subcategory = SubCategorie::orderBy('id', 'desc')->first();
             if (Storage::disk('tmp')->exists($this->header_image->getFileName())) {
-                $subcategory->addMedia($this->header_image->getRealPath())->withCustomProperties(['extension' => $this->header_image->getClientOriginalExtension()])->toMediaCollection('tumbnail');
+                $subcategory->addMedia($this->header_image->getRealPath())->withCustomProperties(['name' => $this->header_image->getClientOriginalName()])->toMediaCollection('tumbnail');
             }
 
             $uploadedFiles = Media::where('model_id', $subcategory->id)->get();
             foreach ($uploadedFiles as $media) {
                 if ($media->friendly_name == '') {
                     Media::where('id', $media->id)->update([
-                        'friendly_name' => $media->name,
+                        'friendly_name' => $media->getCustomProperty('name'),
                     ]);
                 }
             }

@@ -4,7 +4,7 @@
             <div class="card">
                 <div class="card-header d-flex justify-content-between align-items-center">
                     <p>Sub categorie bewerken</p>
-                    <a class="close-card" href="" wire:click.prevent="cancelPage()"><i class="fa-solid fa-x"></i></a>
+                    <a class="close-card" href="" wire:click.prevent="cancel()"><i class="fa-solid fa-x"></i></a>
                 </div>
                 <div class="card-body">
                     <form  x-data="{ buttonDisabled: false}" x-on:livewire-upload-start="buttonDisabled = true" x-on:livewire-upload-finish="buttonDisabled = false" >
@@ -235,114 +235,6 @@
                                                         theme="snow" />
                                                 </div>
                                                 @error('subcategorie_text_en')
-                                                <span class="text-danger">{{ $message }}</span>
-                                                @enderror
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-
-                            <br/>
-                            <hr class="rounded">
-                            <h5 class="form-section-title">SEO:</h5>
-                            <br/>
-                            <div wire:ignore>
-                                <ul class="nav2 nav-tabs" id="myTab" role="tablist">
-                                    <li class="nav-item" role="presentation">
-                                        <button class="nav-link active" id="nl-tab" data-bs-toggle="tab" data-bs-target="#nl-seo-tab-pane" type="button" role="tab" aria-controls="nl-seo-tab-pane" aria-selected="true">NL</button>
-                                    </li>
-                                    <li class="nav-item" role="presentation">
-                                        <button class="nav-link" id="de-tab" data-bs-toggle="tab" data-bs-target="#de-seo-tab-pane" type="button" role="tab" aria-controls="de-seo-tab-pane" aria-selected="false">DE</button>
-                                    </li>
-                                    <li class="nav-item" role="presentation">
-                                        <button class="nav-link" id="en-tab" data-bs-toggle="tab" data-bs-target="#en-seo-tab-pane" type="button" role="tab" aria-controls="en-seo-tab-pane" aria-selected="false">EN</button>
-                                    </li>
-
-                                </ul>
-
-                                <div class="tab-content" id="myTabContent">
-                                    <div class="tab-pane fade show active" id="nl-seo-tab-pane" role="tabpanel" aria-labelledby="nl-text-tab" tabindex="0">
-                                        <div class="form-section">
-                                            <div class="form-group mb-3">
-                                                <label for="meta_title">NL - Meta titel:</label><br/>
-                                                <small class="sub-label-admin">Dit is zoektitel van de subcategorie</small>
-                                                <input class="form-control @error('meta_title_nl') is-invalid @enderror" id="meta_title_nl" wire:model.live="meta_title_nl" placeholder="Shovels">
-                                                @error('meta_title_nl')
-                                                <span class="text-danger">{{ $message }}</span>
-                                                @enderror
-                                            </div>
-                                            <div class="form-group mb-3">
-                                                <label for="meta_keywords">NL - Meta zoekwoorden:</label><br/>
-                                                <small class="sub-label-admin">Keywords scheiden met een comma en een spatie!</small>
-                                                <input class="form-control @error('meta_keywords_nl') is-invalid @enderror" id="meta_keywords_nl" wire:model.live="meta_keywords_nl" placeholder="Shovels, bakken">
-                                                @error('meta_keywords_nl')
-                                                <span class="text-danger">{{ $message }}</span>
-                                                @enderror
-                                            </div>
-                                            <div class="form-group mb-3">
-                                                <label for="meta_description">NL - Meta beschrijving:</label><br/>
-                                                <small class="sub-label-admin">Omschrijf hier je subcategorie (minimaal 70 en maximaal 155 characters)</small>
-                                                <textarea class="form-control @error('meta_description_nl') is-invalid @enderror" minlength="70" maxlength="155" id="meta_description_nl" wire:model.live="meta_description_nl" placeholder="Omschrijving van de categorie"></textarea>
-                                                @error('meta_description_nl')
-                                                <span class="text-danger">{{ $message }}</span>
-                                                @enderror
-                                            </div>
-
-                                        </div>
-                                    </div>
-                                    <div class="tab-pane fade" id="de-seo-tab-pane" role="tabpanel" aria-labelledby="de-seo-tab" tabindex="0">
-                                        <div class="form-section">
-                                            <div class="form-group mb-3">
-                                                <label for="meta_title">DE - Meta-titel:</label><br/>
-                                                <small class="sub-label-admin">Dit is zoektitel van de categorie</small>
-                                                <input class="form-control @error('meta_title_de') is-invalid @enderror" id="meta_title_de" wire:model.live="meta_title_de" placeholder="Shovels">
-                                                @error('meta_title_de')
-                                                <span class="text-danger">{{ $message }}</span>
-                                                @enderror
-                                            </div>
-                                            <div class="form-group mb-3">
-                                                <label for="meta_keywords">DE - Meta zoekwoorden:</label><br/>
-                                                <small class="sub-label-admin">Keywords scheiden met een comma en een spatie!</small>
-                                                <input class="form-control @error('meta_keywords_de') is-invalid @enderror" id="meta_keywords_de" wire:model.live="meta_keywords_de" placeholder="Shovels, bakken">
-                                                @error('meta_keywords_de')
-                                                <span class="text-danger">{{ $message }}</span>
-                                                @enderror
-                                            </div>
-                                            <div class="form-group mb-3">
-                                                <label for="meta_description">DE - Meta beschrijving:</label><br/>
-                                                <small class="sub-label-admin">Omschrijf hier je categorie (minimaal 70 en maximaal 155 characters)</small>
-                                                <textarea class="form-control @error('meta_description_de') is-invalid @enderror" minlength="70" maxlength="155" id="meta_description_de" wire:model.live="meta_description_de" placeholder="Omschrijving van de categorie"></textarea>
-                                                @error('meta_description_de')
-                                                <span class="text-danger">{{ $message }}</span>
-                                                @enderror
-                                            </div>
-
-                                        </div>
-                                    </div>
-                                    <div class="tab-pane fade" id="en-seo-tab-pane" role="tabpanel" aria-labelledby="en-seo-tab" tabindex="0">
-                                        <div class="form-section">
-                                            <div class="form-group mb-3">
-                                                <label for="meta_title">EN - Meta titel:</label><br/>
-                                                <small class="sub-label-admin">Dit is de titel van je webpagina!</small>
-                                                <input class="form-control @error('meta_title_en') is-invalid @enderror" id="meta_title_en" wire:model.live="meta_title_en" placeholder="Shovels">
-                                                @error('meta_title')
-                                                <span class="text-danger">{{ $message }}</span>
-                                                @enderror
-                                            </div>
-                                            <div class="form-group mb-3">
-                                                <label for="meta_keywords">EN - Meta zoekwoorden:</label><br/>
-                                                <small class="sub-label-admin">Keywords scheiden met een comma en een spatie!</small>
-                                                <input class="form-control @error('meta_keywords_en') is-invalid @enderror" id="meta_keywords_en" wire:model.live="meta_keywords_en" placeholder="Shovels, bakken">
-                                                @error('meta_keywords_en')
-                                                <span class="text-danger">{{ $message }}</span>
-                                                @enderror
-                                            </div>
-                                            <div class="form-group mb-3">
-                                                <label for="meta_description">EN - Meta beschrijving:</label><br/>
-                                                <small class="sub-label-admin">Omschrijf hier je categorie (minimaal 70 en maximaal 155 characters)</small>
-                                                <textarea class="form-control @error('meta_description_en') is-invalid @enderror" minlength="70" maxlength="155" id="meta_description_en" wire:model.live="meta_description_en" placeholder="Omschrijving van de categorie"></textarea>
-                                                @error('meta_description_en')
                                                 <span class="text-danger">{{ $message }}</span>
                                                 @enderror
                                             </div>

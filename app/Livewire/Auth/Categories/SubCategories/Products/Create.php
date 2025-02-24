@@ -37,8 +37,7 @@ class Create extends Component
     public $id;
     public $mediaItems;
     public $images = [];
-    public $videos = [];
-    public $pdffiles = [];
+    public $downloads = [];
     public $filename = '';
     public $ignore = false;
     public $mediaId;
@@ -67,11 +66,7 @@ class Create extends Component
 
         $this->images = Media::where('model_type', 'App\Models\Product')->where('mime_type','LIKE', '%image/%')->where('model_id', $this->id)->orderBy('order_column')->get();
 
-        $this->pdffiles = Media::where('model_type', 'App\Models\Product')->where('mime_type','LIKE', '%application/%')->where('model_id', $this->id)->orderBy('order_column')->get();
-
-        $this->videos = Media::where('model_type', 'App\Models\Product')->where('mime_type','LIKE', '%video/%')->where('model_id', $this->id)->orderBy('order_column')->get();
-
-
+        $this->downloads = Media::where('model_type', 'App\Models\Product')->where('mime_type','LIKE', '%video/%')->orWhere('mime_type','LIKE', '%application/%')->where('model_id', $this->id)->orderBy('order_column')->get();
 
         return view('livewire.auth.categories.subcategories.products.create');
     }
@@ -153,7 +148,7 @@ class Create extends Component
         foreach($files as $file) {
             if(!in_array($file->getFileName(),$mediaArray)) {
                 if(Storage::disk('tmp')->exists($file->getFileName())) {
-                    $this->product->addMedia($file->getRealPath())->withCustomProperties(['extension' => $file->getClientOriginalExtension()])->toMediaCollection('files');
+                    $this->product->addMedia($file->getRealPath())->withCustomProperties(['name' => $file->getClientOriginalName()])->toMediaCollection('files');
                 }
 
             }
@@ -162,7 +157,7 @@ class Create extends Component
         foreach($uploadedFiles as $media) {
             if($media->friendly_name == '') {
                 Media::where('id', $media->id)->update([
-                    'friendly_name' => $media->name,
+                    'friendly_name' => $media->getCustomProperty('name'),
                 ]);
             }
         }

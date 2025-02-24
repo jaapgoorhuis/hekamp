@@ -45,13 +45,15 @@
                                         <h4>{!! $category['title_'.\Illuminate\Support\Facades\App::currentLocale()]!!}</h4>
                                     @endif
                                 </div>
-
                                 @foreach($category->getMedia('tumbnail') as $media)
+                                @if($count < 1)
                                     @if($media)
                                         <div class="card-image-box" style="background-image:url('{{$media->getFullUrl()}}');"></div>
                                     @else
-                                        <div class="card-image-box" style="background-image:url('/storage/images/frontend/kuilbak_s-80-80-250-1.jpg');"> </div>
+                                        <div class="card-image-box1" style="background-image:url('/storage/images/frontend/kuilbak_s-80-80-250-1.jpg');"> </div>
                                    @endif
+                                @endif
+
                                 @endforeach
 
 
@@ -63,8 +65,6 @@
                                         <h4 class="card-title">{!! $category['title_'.\Illuminate\Support\Facades\App::currentLocale()]!!}</h4>
                                     @endif
                                     <div class="card-text">
-
-
                                         @if($category['subCategory_text_'.\Illuminate\Support\Facades\App::currentLocale()] == '')
 
                                             {!! $category['subCategory_text_nl']!!}

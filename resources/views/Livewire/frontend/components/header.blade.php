@@ -5,30 +5,27 @@
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <title>
         @if($page)
-            {{$page->title}}
+           {{$settings->site_name}} | {{$page->title}}
+        @else
+            {{$settings->site_name}} | {{$route}}
        @endif
     </title>
-    <meta name="description" content="Crewa is gevestigd in Kootwijkerbroek in Nederland. Crewa is gespecialiseerd in het ontwikkelen van dashboards, web applicaties en websites.">
-    <meta property="og:locale" content="{{$locale}}_{{$locale}}" />
-    <meta property="og:type" content="website" />
+
+
     @if($page)
-        <meta property="og:title" content="{{$page->title}} -> Home" />
+        <meta property="description" content="{{$page['meta_description_'.$locale]}}" />
+    @else
+        <meta property="description" content="{{\App\Models\Page::where('route', 'index')->first()['meta_description_'.$locale]}}" />
     @endif
-    @if($page)
-        <meta property="og:description" content="{{$page['meta_description_'.$locale]}}" />
-    @endif
-    <meta property="og:url" content="{{env('APP_URL')}}" />
-    <meta property="og:site_name" content="{{env('APP_NAME')}}" />
-    <meta property="og:image" content="{{env('APP_URL')}}/storage/images/frontend/hekamp_logo.png" />
+    <link rel="icon" type="image/x-icon" href="{{env('APP_URL')}}/storage/images/frontend/favicon.ico">
+
     <meta name="twitter:card" content="summary_large_image" />
-
-
-
     @if($page)
         @if($page->route == 'projecten')
             <link rel="stylesheet" href="{{asset('/css/projecten.css')}}"/>
         @endif
     @endif
+    @filepondScripts
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.7.1/jquery.min.js" integrity="sha512-v2CJ7UaYy4JwqLDIrZUI/4hqeoQieOmAZNXBeQyjo21dadnwR+8ZaIJVT8EE2iyI61OV8e6M8PP2/4hpQINQ/g==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
     <link rel="stylesheet" type="text/css" href="//fonts.googleapis.com/css?family=Montserrat:300,400,500,700,800">
     <link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/npm/boxicons@latest/css/boxicons.min.css" >
@@ -42,7 +39,8 @@
     <script src="https://cdn.jsdelivr.net/npm/quill@2.0.3/dist/quill.js"></script>
     <script defer src="https://cdn.jsdelivr.net/gh/hunghg255/quill-resize-module/dist/quill-resize-image.min.js"></script>
     <script src="https://unpkg.com/quill-html-edit-button@2.2.7/dist/quill.htmlEditButton.min.js"></script>
-    @filepondScripts
+    <script src="https://unpkg.com/quill-html-edit-button@2.2.7/dist/quill.htmlEditButton.min.js"></script>
+
     @livewireStyles
 </head>
 <body>
@@ -53,8 +51,6 @@
      <a class="btn btn-outline-secondary" href="/login">Ga naar backend</a>
     </div>
 @endif
-
-
         <nav class="navbar navbar-expand-lg bg-body-tertiary">
             <div class="container-fluid">
 
@@ -64,11 +60,10 @@
                 </button>
                 <div class="collapse navbar-collapse" id="navbarScroll">
                     <ul class="navbar-nav me-auto my-2 my-lg-0 navbar-nav-scroll" style="--bs-scroll-height: 100px;">
-
                         @foreach($menu_items as $item)
                             @if($item->page)
                         <li class="nav-item">
-                            <a class="nav-link @if($slug == $item->page->route)active @endif" aria-current="page" href="/{{$item->page->route}}">
+                            <a class="nav-link @if($slug == $item->page->route)active @endif" aria-current="page" href="/{{\Illuminate\Support\Facades\App::currentLocale()}}/{{$item->page->route}}">
 
                                 @if( $item['title_'.\Illuminate\Support\Facades\App::currentLocale()] == '')
                                     {{$item['title_nl']}}
@@ -116,6 +111,8 @@
 </div>
 @livewireScripts
 <script src="{{asset('/js/core.js')}}"></script>
+<script src="{{asset('/js/app.js')}}"></script>
+<script src="https://cdn.jsdelivr.net/npm/bs5-lightbox@1.8.3/dist/index.bundle.min.js"></script>
 <script src="{{asset('/js/script.js')}}"></script>
 <script src="https://cdn.jsdelivr.net/npm/popper.js@1.12.9/dist/umd/popper.min.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" crossorigin="anonymous"></script>
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js" crossorigin="anonymous"></script>

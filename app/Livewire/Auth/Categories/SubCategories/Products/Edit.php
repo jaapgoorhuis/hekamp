@@ -39,9 +39,7 @@ class Edit extends Component
     public $imageUrl;
     public $filename = '';
     public $images = [];
-    public $videos = [];
-    public $pdffiles = [];
-
+    public $downloads = [];
     use WithFilePond;
     use WithFileUploads;
 
@@ -73,9 +71,7 @@ class Edit extends Component
 
         $this->images = Media::where('model_type', 'App\Models\Product')->where('mime_type','LIKE', '%image/%')->where('model_id', $this->id)->orderBy('order_column')->get();
 
-        $this->pdffiles = Media::where('model_type', 'App\Models\Product')->where('mime_type','LIKE', '%application/%')->where('model_id', $this->id)->orderBy('order_column')->get();
-
-        $this->videos = Media::where('model_type', 'App\Models\Product')->where('mime_type','LIKE', '%video/%')->where('model_id', $this->id)->orderBy('order_column')->get();
+        $this->downloads = Media::where('model_type', 'App\Models\Product')->where('mime_type','LIKE', '%video/%')->orWhere('mime_type','LIKE', '%application/%')->where('model_id', $this->id)->orderBy('order_column')->get();
 
         return view('livewire.auth.categories.subcategories.products.edit');
     }
@@ -116,17 +112,12 @@ class Edit extends Component
 
     public function removeExistingFiles($id) {
 
-        foreach($this->mediaItems as $mediaitem) {
-            if($mediaitem->id == $id) {
-                $mediaitem->delete();
-            }
-        }
-        $this->dispatch('pondReset');
+        Media::where('id', $id)->delete();
+//        $this->dispatch('pondReset');
     }
 
     #[On('removeFiles')]
     public function removeFiles($filename) {
-
         Media::where('file_name',$filename)->delete();
     }
 
@@ -141,12 +132,17 @@ class Edit extends Component
             array_push($mediaArray, $media['file_name']);
         }
 
+
+
         $files = collect($this->files);
+
+
+
 
         foreach($files as $file) {
             if(!in_array($file->getFileName(),$mediaArray)) {
                 if(Storage::disk('tmp')->exists($file->getFileName())) {
-                    $this->product->addMedia($file->getRealPath())->toMediaCollection('files');
+                    $this->product->addMedia($file->getRealPath())->withCustomProperties(['name' => $file->getClientOriginalName()])->toMediaCollection('files');
                 }
 
             }
@@ -156,7 +152,7 @@ class Edit extends Component
         foreach($uploadedFiles as $media) {
             if($media->friendly_name == '') {
                 Media::where('id', $media->id)->update([
-                    'friendly_name' => $media->name,
+                    'friendly_name' => $media->getCustomProperty('name'),
                 ]);
             }
 

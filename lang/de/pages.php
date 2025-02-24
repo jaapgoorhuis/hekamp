@@ -27,4 +27,13 @@ return [
     'no-products-content' => 'Es gibt noch keine Produkte in dieser Kategorie. Bitte versuchen Sie es später erneut.',
     'searchResults' => 'Suchergebnisse',
     'no-search-results' => 'Keine Produkte gefunden. Versuchen Sie eine andere Suche.',
+    'name' => 'Name',
+    'company_name' => 'Name der Firma',
+    'phone' => 'Telefonnummer',
+    'email' => 'E-Mail',
+    'message' => 'Nachricht',
+    'send' => 'lenken',
+    'popularProducts' => 'Beliebte Produkte',
+    'areHuman' => 'Bist du ein Mensch?'
+
 ];
