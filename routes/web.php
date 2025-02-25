@@ -16,6 +16,7 @@ use App\Livewire\Auth\Pages\Create;
 use App\Livewire\Auth\Pages\Edit;
 use App\Livewire\Auth\Pages\Delete;
 use App\Livewire\Auth\Dashboard;
+use Livewire\Livewire;
 use \Spatie\LivewireFilepond\WithFilePond;
 
 /*
@@ -28,6 +29,15 @@ use \Spatie\LivewireFilepond\WithFilePond;
 | be assigned to the "web" middleware group. Make something great!
 |
 */
+
+Livewire::setScriptRoute(function ($handle) {
+    return Route::get('public/vendor/livewire/livewire.js', $handle);
+});
+
+Livewire::setUpdateRoute(function ($handle) {
+    return Route::post('vendor/livewire/update', $handle);
+});
+
 
 Route::controller(LoginRegisterController::class)->group(function() {
     Route::get('/register', 'register')->name('register');
@@ -96,10 +106,6 @@ Route::post('reset-password', [ForgotPasswordController::class, 'submitResetPass
 //blocks routes
 
 
-
-//frondend routes
-
-
     //always redirect to index
     Route::get('/', function () {
         $locale = App::getLocale();
@@ -151,3 +157,5 @@ Route::post('reset-password', [ForgotPasswordController::class, 'submitResetPass
         return view('livewire.frontend.'.$view.'.index');
 
     })->name('search');
+
+

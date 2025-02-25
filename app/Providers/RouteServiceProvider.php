@@ -37,8 +37,7 @@ class RouteServiceProvider extends ServiceProvider
             Route::middleware('web')
                 ->group(base_path('routes/web.php'));
 
-            Route::prefix('auth/pages/blocks')->middleware('blocks')
-                ->group(base_path('resources/views/Livewire/Blocks/Routes/web.php'));
+
         });
     }
 }

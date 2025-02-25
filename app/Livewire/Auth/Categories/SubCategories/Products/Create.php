@@ -79,8 +79,9 @@ class Create extends Component
     }
 
     public function store() {
-        $this->validate();
 
+
+        $this->validate();
 
        $this->uploadFiles();
 

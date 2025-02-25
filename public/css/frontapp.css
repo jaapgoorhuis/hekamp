@@ -462,7 +462,7 @@ nav.navbar.navbar-expand-lg.bg-body-tertiary {
 }
 
 .bg-body-tertiary {
-    background-image:url('/storage/images/frontend/header_bg.jpg');
+    background-image:url('/public/storage/images/frontend/header_bg.jpg');
 }
 
 .navbar-nav .nav-link.active, .navbar-nav .nav-link.show {

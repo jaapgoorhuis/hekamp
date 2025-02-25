@@ -43,7 +43,9 @@ class Contact extends Component
 
     public function storeContact() {
         $this->validate();
-        Mail::to('info@crewa.nl')->send(new SendContactFormMail($this->name, $this->company_name, $this->email, $this->phone, $this->message));
+
+
+        Mail::to('jaapgoorhuis@hotmail.com')->send(new SendContactFormMail($this->name, $this->company_name, $this->email, $this->phone, $this->message));
         session()->flash('success','Uw bericht is verzonden. Wij nemen zo snel mogelijk contact met u op!');
         $this->resetFields();
     }
