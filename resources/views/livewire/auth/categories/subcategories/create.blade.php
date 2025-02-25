@@ -11,8 +11,8 @@
                         <h5 class="form-section-title">Sub categorie gegevens:</h5>
 
                         <br/>
-                        <div wire:ignore>
-                            <ul class="nav2 nav-tabs" id="myTab" role="tablist">
+                        <div>
+                            <ul wire:ignore class="nav2 nav-tabs" id="myTab" role="tablist">
                                 <li class="nav-item" role="presentation">
                                     <button class="nav-link active" id="nl-tab" data-bs-toggle="tab" data-bs-target="#nl-title-tab-pane" type="button" role="tab" aria-controls="nl-title-tab-pane" aria-selected="true">NL</button>
                                 </li>

@@ -34,7 +34,7 @@
 
                                     <td>{!! $item->keyword_nl!!}</td>
                                     @if(\App\Models\Product::find( $item->product_id))
-                                        <td>{!!\App\Models\Product::find( $item->product_id)->title_nl!!}</td>
+                                    <td>{!!\App\Models\Product::find( $item->product_id)->title_nl!!}</td>
                                     @else
                                         <td>Geen titel</td>
                                     @endif

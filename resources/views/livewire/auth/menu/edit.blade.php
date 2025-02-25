@@ -12,7 +12,7 @@
                         <br/>
 
                             <div class="form-section">
-                                <ul wire:ignore class="nav2 nav-tabs" id="myTab" role="tablist">
+                                <ul  wire:ignore class="nav2 nav-tabs" id="myTab" role="tablist">
                                     <li class="nav-item" role="presentation">
                                         <button class="nav-link active" id="nl-tab" data-bs-toggle="tab" data-bs-target="#nl-title-tab-pane" type="button" role="tab" aria-controls="nl-title-tab-pane" aria-selected="true">NL</button>
                                     </li>
@@ -63,7 +63,6 @@
                                         </div>
                                     </div>
                                 </div>
-                            </div>
 
 
                             <div class="form-group mb-3">
@@ -103,7 +102,7 @@
                                 @enderror
                             </div>
 
-
+                        </div>
                         <div class="d-grid gap-2">
                             <button wire:click.prevent="updateMenu()" :disabled="buttonDisabled" class="btn btn-success btn-block">Opslaan</button>
                             <button wire:click.prevent="cancelMenu()" :disabled="buttonDisabled" class="btn btn-primary btn-block">Annuleren</button>

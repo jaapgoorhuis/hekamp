@@ -4,7 +4,7 @@
             <div class="card">
                 <div class="card-header d-flex justify-content-between align-items-center">
                     <p>Zoekwoord toevoegen</p>
-                    <a class="close-card" href="" wire:click.prevent="cancelProject()"><i class="fa-solid fa-x"></i></a>
+                    <a class="close-card" href="" wire:click.prevent="cancel()"><i class="fa-solid fa-x"></i></a>
                 </div>
                 <div class="card-body">
                     <form  x-data="{ buttonDisabled: false}" x-on:livewire-upload-start="buttonDisabled = true" x-on:livewire-upload-finish="buttonDisabled = false" >
@@ -64,12 +64,11 @@
                                         </div>
                                     </div>
                                 </div>
-                            </div>
 
                             <div class="form-group mb-3">
                                 <label for="route">Product koppelen:</label><br/>
                                 <small class="sub-label-admin">Selecteer het product dat je aan het zoekwoord wilt koppelen. Dit product wordt dan gevonden als er op het zoekwoord gezocht word.</small>
-                                <select wire:model.live="product_id" class="form-control">
+                                <select wire:model="product_id" class="form-control">
                                     @foreach($products as $product)
                                         <option value="{{$product->id}}">{{$product->title_nl}}
                                     @endforeach
@@ -81,6 +80,7 @@
 
 
 
+                        </div>
                         <div class="d-grid gap-2">
                             <button wire:click.prevent="store()" :disabled="buttonDisabled" class="btn btn-success btn-block">Opslaan</button>
                             <button wire:click.prevent="cancel()" :disabled="buttonDisabled" class="btn btn-primary btn-block">Annuleren</button>

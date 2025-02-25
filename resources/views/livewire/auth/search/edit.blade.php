@@ -64,7 +64,6 @@
                                         </div>
                                     </div>
                                 </div>
-                            </div>
 
                             <div class="form-group mb-3">
                                 <label for="route">Product koppelen:</label><br/>
@@ -81,7 +80,7 @@
 
 
 
-
+                        </div>
                         <div class="d-grid gap-2">
                             <button wire:click.prevent="update()" :disabled="buttonDisabled" class="btn btn-success btn-block">Opslaan</button>
                             <button wire:click.prevent="cancel()" :disabled="buttonDisabled" class="btn btn-primary btn-block">Annuleren</button>
