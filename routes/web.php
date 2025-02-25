@@ -157,5 +157,3 @@ Route::post('reset-password', [ForgotPasswordController::class, 'submitResetPass
         return view('livewire.frontend.'.$view.'.index');
 
     })->name('search');
-
-
