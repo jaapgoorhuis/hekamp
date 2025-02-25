@@ -29,7 +29,7 @@
                                     <div class="form-section">
                                         <div class="form-group mb-3">
                                             <label for="title_nl">NL - Naam van de subcategorie:</label>
-                                            <input type="text" class="form-control @error('title_nl') is-invalid @enderror" id="title_nl" placeholder="Shovels" wire:model.live="title_nl">
+                                            <input type="text" class="form-control @error('title_nl') is-invalid @enderror" id="title_nl" placeholder="Shovels" wire:model.defer="title_nl">
                                             @error('title_nl')
                                             <span class="text-danger">{{ $message }}</span>
                                             @enderror
@@ -41,7 +41,7 @@
                                     <div class="form-section">
                                         <div class="form-group mb-3">
                                             <label for="title_de">DE - Naam van de subcategorie:</label>
-                                            <input type="text" class="form-control @error('title_de') is-invalid @enderror" id="title_de" placeholder="Schaufel" wire:model.live="title_de">
+                                            <input type="text" class="form-control @error('title_de') is-invalid @enderror" id="title_de" placeholder="Schaufel" wire:model.defer="title_de">
                                             @error('title_de')
                                             <span class="text-danger">{{ $message }}</span>
                                             @enderror
@@ -53,7 +53,7 @@
                                     <div class="form-section">
                                         <div class="form-group mb-3">
                                             <label for="title_en">EN - Naam van de subcategorie:</label>
-                                            <input type="text" class="form-control @error('title_en') is-invalid @enderror" id="title_en" placeholder="Shovel" wire:model.live="title_en">
+                                            <input type="text" class="form-control @error('title_en') is-invalid @enderror" id="title_en" placeholder="Shovel" wire:model.defer="title_en">
                                             @error('title_en')
                                             <span class="text-danger">{{ $message }}</span>
                                             @enderror

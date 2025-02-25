@@ -10,9 +10,9 @@
                     <form  x-data="{ buttonDisabled: false}" x-on:livewire-upload-start="buttonDisabled = true" x-on:livewire-upload-finish="buttonDisabled = false" >
                         <h5 class="form-section-title">Menu items:</h5>
                         <br/>
-                        <div wire:ignore>
+
                             <div class="form-section">
-                                <ul class="nav2 nav-tabs" id="myTab" role="tablist">
+                                <ul wire:ignore class="nav2 nav-tabs" id="myTab" role="tablist">
                                     <li class="nav-item" role="presentation">
                                         <button class="nav-link active" id="nl-tab" data-bs-toggle="tab" data-bs-target="#nl-title-tab-pane" type="button" role="tab" aria-controls="nl-title-tab-pane" aria-selected="true">NL</button>
                                     </li>
@@ -29,7 +29,7 @@
                                         <div class="form-section">
                                             <div class="form-group mb-3">
                                                 <label for="title_nl">NL - Menu titel:</label>
-                                                <input type="text" class="form-control @error('title_nl') is-invalid @enderror" id="title_nl" placeholder="Homepagina" wire:model.live="title_nl">
+                                                <input type="text" class="form-control @error('title_nl') is-invalid @enderror" id="title_nl" placeholder="Homepagina" wire:model.defer="title_nl">
                                                 @error('title_nl')
                                                 <span class="text-danger">{{ $message }}</span>
                                                 @enderror
@@ -41,7 +41,7 @@
                                         <div class="form-section">
                                             <div class="form-group mb-3">
                                                 <label for="title_de">DE - Menu titel:</label>
-                                                <input type="text" class="form-control @error('title_de') is-invalid @enderror" id="title_de" placeholder="Homepagina" wire:model.live="title_de">
+                                                <input type="text" class="form-control @error('title_de') is-invalid @enderror" id="title_de" placeholder="Homepagina" wire:model.defer="title_de">
                                                 @error('title_de')
                                                 <span class="text-danger">{{ $message }}</span>
                                                 @enderror
@@ -54,7 +54,7 @@
 
                                             <div class="form-group mb-3">
                                                 <label for="title_en">EN - Menu titel:</label>
-                                                <input type="text" class="form-control @error('title_en') is-invalid @enderror" id="title_en" placeholder="Homepagina" wire:model.live="title_en">
+                                                <input type="text" class="form-control @error('title_en') is-invalid @enderror" id="title_en" placeholder="Homepagina" wire:model.defer="title_en">
                                                 @error('title_en')
                                                 <span class="text-danger">{{ $message }}</span>
                                                 @enderror
@@ -103,7 +103,7 @@
                                 @enderror
                             </div>
 
-                        </div>
+
                         <div class="d-grid gap-2">
                             <button wire:click.prevent="updateMenu()" :disabled="buttonDisabled" class="btn btn-success btn-block">Opslaan</button>
                             <button wire:click.prevent="cancelMenu()" :disabled="buttonDisabled" class="btn btn-primary btn-block">Annuleren</button>

@@ -46,6 +46,11 @@ class Create extends Component
 
     public function store() {
         $this->validate();
+
+        if(!$this->product_id) {
+            $this->product_id = Product::orderBy('created_at', 'asc')->first()->id;
+        }
+
         CustomSearch::create([
             'keyword_nl' => $this->keyword_nl,
             'keyword_de' => $this->keyword_de,

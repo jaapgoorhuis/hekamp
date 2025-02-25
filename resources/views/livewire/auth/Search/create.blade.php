@@ -12,8 +12,8 @@
 
                         <br/>
                         <div class="form-section">
-                            <div wire:ignore>
-                                <ul class="nav2 nav-tabs" id="myTab" role="tablist">
+
+                                <ul wire:ignore class="nav2 nav-tabs" id="myTab" role="tablist">
                                     <li class="nav-item" role="presentation">
                                         <button class="nav-link active" id="nl-tab" data-bs-toggle="tab" data-bs-target="#nl-title-tab-pane" type="button" role="tab" aria-controls="nl-title-tab-pane" aria-selected="true">NL</button>
                                     </li>
@@ -30,7 +30,7 @@
                                         <div class="form-section">
                                             <div class="form-group mb-3">
                                                 <label for="keyword_nl">NL - Zoekwoord:</label>
-                                                <input type="text" class="form-control @error('keyword_nl') is-invalid @enderror" id="title_nl" placeholder="kuilbak" wire:model.live="keyword_nl">
+                                                <input type="text" class="form-control @error('keyword_nl') is-invalid @enderror" id="title_nl" placeholder="kuilbak" wire:model.defer="keyword_nl">
                                                 @error('keyword_nl')
                                                 <span class="text-danger">{{ $message }}</span>
                                                 @enderror
@@ -42,7 +42,7 @@
                                         <div class="form-section">
                                             <div class="form-group mb-3">
                                                 <label for="keyword_de">DE - Zoekwoord:</label>
-                                                <input type="text" class="form-control @error('keyword_de') is-invalid @enderror" id="title_de" placeholder="kuilbak" wire:model.live="keyword_de">
+                                                <input type="text" class="form-control @error('keyword_de') is-invalid @enderror" id="title_de" placeholder="kuilbak" wire:model.defer="keyword_de">
                                                 @error('keyword_de')
                                                 <span class="text-danger">{{ $message }}</span>
                                                 @enderror
@@ -55,7 +55,7 @@
 
                                             <div class="form-group mb-3">
                                                 <label for="keyword_en">EN - Zoekwoord:</label>
-                                                <input type="text" class="form-control @error('keyword_en') is-invalid @enderror" id="title_en" placeholder="Kuilbak" wire:model.live="keyword_en">
+                                                <input type="text" class="form-control @error('keyword_en') is-invalid @enderror" id="title_en" placeholder="Kuilbak" wire:model.defer="keyword_en">
                                                 @error('keyword_en')
                                                 <span class="text-danger">{{ $message }}</span>
                                                 @enderror
@@ -81,7 +81,6 @@
 
 
 
-                        </div>
                         <div class="d-grid gap-2">
                             <button wire:click.prevent="store()" :disabled="buttonDisabled" class="btn btn-success btn-block">Opslaan</button>
                             <button wire:click.prevent="cancel()" :disabled="buttonDisabled" class="btn btn-primary btn-block">Annuleren</button>

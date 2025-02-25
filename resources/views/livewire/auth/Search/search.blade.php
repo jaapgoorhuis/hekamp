@@ -33,7 +33,11 @@
                                 <tr>
 
                                     <td>{!! $item->keyword_nl!!}</td>
-                                    <td>{!!\App\Models\Product::find( $item->product_id)->title_nl!!}</td>
+                                    @if(\App\Models\Product::find( $item->product_id))
+                                        <td>{!!\App\Models\Product::find( $item->product_id)->title_nl!!}</td>
+                                    @else
+                                        <td>Geen titel</td>
+                                    @endif
                                     <td style="max-width: 60px;">
                                         <button wire:click="edit({{$item->id}})" class="btn btn-primary btn-sm">Bewerken</button>
                                     </td>
